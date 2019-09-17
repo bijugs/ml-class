@@ -30,6 +30,12 @@ model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(32, (3, 3), padding='same',
                                  input_shape=X_train.shape[1:], activation='relu'))
 model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
+# << Modified
+model.add(tf.keras.layers.Conv2D(20, (3, 3), padding='same',activation='relu'))
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
+model.add(tf.keras.layers.Conv2D(40, (3, 3), padding='same',activation='relu'))
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
+# End modified >>
 model.add(tf.keras.layers.Dropout(config.dropout))
 
 model.add(tf.keras.layers.Flatten())
@@ -46,6 +52,7 @@ print("Total params: ", config.total_params)
 X_train = X_train.astype('float32') / 255.
 X_test = X_test.astype('float32') / 255.
 
+# Changes to ImageDataGenerator
 datagen = ImageDataGenerator(width_shift_range=0.1)
 datagen.fit(X_train)
 
