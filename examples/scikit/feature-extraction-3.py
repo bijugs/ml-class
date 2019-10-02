@@ -15,6 +15,6 @@ count_vect.fit(fixed_text)
 
 # turns the text into a sparse matrix
 counts = count_vect.transform(fixed_text)
-
-my_counts = count_vect.transform(["love that iphone!", "HATE that iphone"])
+# print(counts)
+my_counts = count_vect.transform(["i love the iphone!", "HATE that i-phone"])
 print(my_counts)

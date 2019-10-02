@@ -13,3 +13,7 @@ target = df['is_there_an_emotion_directed_at_a_brand_or_product']
 text = df['tweet_text']
 
 print(len(text))
+
+print(target)
+
+text = df['tweet_text']
