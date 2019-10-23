@@ -15,17 +15,36 @@ text = df['tweet_text']
 fixed_text = text[pd.notnull(text)]
 fixed_target = target[pd.notnull(text)]
 
-from sklearn.feature_extraction.text import CountVectorizer
-count_vect = CountVectorizer(lowercase=config.lowercase,
+#from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+#count_vect = CountVectorizer(lowercase=config.lowercase,
+#                             ngram_range=(config.ngram_min,
+#                                          config.ngram_max)
+#                                        )
+
+#count_vect = CountVectorizer(lowercase=config.lowercase,
+#                             ngram_range=(1,2)
+#                                        )
+
+count_vect = TfidfVectorizer(lowercase=config.lowercase,
                              ngram_range=(config.ngram_min,
                                           config.ngram_max)
                                         )
+
 count_vect.fit(fixed_text)
 
 counts = count_vect.transform(fixed_text)
 
-from sklearn.naive_bayes import MultinomialNB
-nb = MultinomialNB()
+#from sklearn.naive_bayes import MultinomialNB
+#nb = MultinomialNB()
+#from sklearn.linear_model import Perceptron
+#nb = Perceptron()
+#from sklearn.svm import SVC
+#nb = SVC()
+#from sklearn.tree import DecisionTreeClassifier
+#nb = DecisionTreeClassifier()
+from sklearn.ensemble import RandomForestClassifier
+nb = RandomForestClassifier(n_estimators=100)
 
 from sklearn.model_selection import cross_val_score, cross_val_predict
 

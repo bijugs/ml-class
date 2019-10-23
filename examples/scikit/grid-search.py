@@ -21,7 +21,7 @@ p = Pipeline(steps=[('counts', CountVectorizer()),
 from sklearn.model_selection import GridSearchCV
 
 
-
+# How do you come-up with these patterns?
 parameters = {
 #    'counts__max_df': (0.5, 0.75,1.0),
 #    'counts__min_df': (0,1,2),

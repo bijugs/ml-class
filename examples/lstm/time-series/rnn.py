@@ -36,7 +36,8 @@ def create_dataset(dataset):
     return np.array(dataX), np.array(dataY)
 
 
-data = load_data("sin")
+#data = load_data("sin")
+data = load_data("airline")
 
 # normalize data to between 0 and 1
 max_val = max(data)

@@ -10,7 +10,7 @@ from util import TextLogger
 # set parameters:
 wandb.init()
 config = wandb.config
-config.vocab_size = 1000
+config.vocab_size = 5000
 config.maxlen = 1000
 config.batch_size = 64
 config.embedding_dims = 50
@@ -42,10 +42,15 @@ model.add(tf.keras.layers.Conv1D(config.filters,
                                  config.kernel_size,
                                  padding='valid',
                                  activation='relu'))
+model.add(tf.keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid', data_format='channels_last'))
 model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dropout(0.25))
 model.add(tf.keras.layers.Dense(config.hidden_dims, activation='relu'))
 model.add(tf.keras.layers.Dropout(0.5))
 model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
+
+#model.add(tf.keras.layers.Bidirectional(LSTM(config.hidden_dims)))
+#model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',

@@ -16,7 +16,8 @@ X_test = X_test.astype('float32') / 255.
 encoder = tf.keras.models.Sequential()
 encoder.add(tf.keras.layers.Flatten(input_shape=(28, 28)))
 encoder.add(tf.keras.layers.Dense(128, activation="relu"))
-encoder.add(tf.keras.layers.Dense(64, activation="relu"))
+encoder.add(tf.keras.layers.Dense(64, activation="relu"))\
+
 encoder.add(tf.keras.layers.Dense(config.encoding_dim, activation="relu"))
 
 decoder = tf.keras.models.Sequential()
@@ -36,6 +37,7 @@ model.fit(X_train, X_train,
           epochs=config.epochs,
           validation_data=(X_test, X_test),
           callbacks=[Images(X_test), wandb.keras.WandbCallback(save_model="false")])
+
 
 encoder.save('auto-encoder.h5')
 decoder.save('auto-decoder.h5')
