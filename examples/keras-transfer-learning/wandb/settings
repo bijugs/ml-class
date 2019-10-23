@@ -1,5 +1,5 @@
 [default]
 entity = bloomberg-class
-project = transfer
+project = groceries
 base_url = https://api.wandb.ai
 
